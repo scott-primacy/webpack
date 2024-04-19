@@ -4,11 +4,7 @@
     "description": "",
     "scripts": {
         "dev": "webpack --config config/dev.config.js || true",
-        "static": "webpack --config config/static.config.js || true",
-        "dev-serve": "webpack-dev-server --open --inline --hot --config config/dev.config.js --progress --colors",
-        "dev-watch": "webpack --config config/dev.config.js --watch",
-        "watch": "webpack --config config/dev.config.js --watch",
-        "prod": "export ENV_FLAG=production && webpack --config config/prod.config.js || true"
+        "dev-watch": "webpack --config config/dev.config.js --watch"
     },
     "author": "Primacy",
     "repository": {
