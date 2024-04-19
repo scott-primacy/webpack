@@ -1,0 +1,132 @@
+// Custom Variables and Overrides
+
+// Colors
+$color-black: #000;
+$color-white: #fff;
+$color-alabaster: #f9f9f9;
+$color-royal-purple: #703f98;
+$color-shark: #212529;
+$color-congress-blue: #004990;
+$color-sushi: #72a22f;
+
+$color-brand-light-gray: #f3f3f3;
+$color-brand-gray: #767676;
+$color-brand-dark-gray: #575757;
+$color-brand-ocean: #00a5bd;
+$color-brand-data-blue: #4367FF;
+$color-brand-systems-blue: #0014CC;
+
+$brand-primary: $color-brand-data-blue; //$color-congress-blue;
+$brand-secondary: $color-white; //$color-royal-purple;
+$brand-accent: $color-brand-ocean; //$color-sushi;
+
+$link-color: $brand-primary;
+$link-color-hover: $brand-primary;
+
+// Alert Colors
+$danger: #dc3545;
+$success: #28a745;
+
+// Font Family
+$font-family-base: "Foco W01", "Foco", Arial, sans-serif;
+
+$headings-font-family: $font-family-base;
+
+// Heading Sizes
+$font-size-h1: 5.8rem;
+$font-size-h2: 4.8rem;
+$font-size-h3: 3rem;
+$font-size-h4: 2.2rem;
+$font-size-h5: 1.8rem;
+$font-size-h6: 1.6rem;
+
+$font-size-h1-mobile: 4.2rem;
+$font-size-h2-mobile: 3rem;
+$font-size-h3-mobile: 2rem;
+$font-size-h4-mobile: 1.8rem;
+$font-size-h5-mobile: 1.6rem;
+$font-size-h6-mobile: 1.4rem;
+
+// Font Sizes
+$font-lg: $font-size-h5;
+$font-size-base: 1.8rem;
+$font-sm: 1.4rem;
+
+$font-lg-mobile: $font-size-h5-mobile;
+$font-size-base-mobile: 1.6rem;
+
+// Font Weights
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-normal: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// Measurements
+$gutter: 15px;
+$grid-gutter-width: ($gutter * 2);
+$border-radius-base: 5px;
+
+// Shadows
+$box-shadow-base: 0 0 20px 0 rgba($color-black, 0.15);
+$box-shadow-base-hover: 0 0 13px 3px rgba($color-black, 0.25);
+
+// Navigation Bar
+$navigation-bar-width: 30px;
+$navigation-bar-spacing: 8px;
+$navigation-bar-animation: cubic-bezier(0.23, 1, 0.32, 1);
+$navigation-bar-color: $brand-primary;
+$navigation-bar-color-close: $brand-primary;
+
+$image-width-full-overlap-offset: 120px;
+$section-wrapper-spacing: 80px;
+$card-image-overlap: 70px;
+$hero-callout-image-height: 260px;
+$hero-callout-image-height-sm: 149px;
+
+// Buttons
+$btn-close-thickness: 3px;
+
+// Page
+$page-spacing: 60px;
+
+// Breakpoints
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1600px
+);
+
+// base font
+$font-min: 1.6rem;
+$font-max: 1.8rem;
+
+// base font - sm
+$font-sm-min: 1.2rem;
+$font-sm-max: 1.4rem;
+
+// base font - lg
+$font-lg-min: 1.8rem;
+$font-lg-max: 2rem;
+
+// heading levels
+$font-h1-min: 4.2rem;
+$font-h1-max: 6rem;
+
+$font-h2-min: 3.4rem;
+$font-h2-max: 5rem;
+
+$font-h3-min: 3rem;
+$font-h3-max: 4rem;
+
+$font-h4-min: 2.4rem;
+$font-h4-max: 2.8rem;
+
+$font-h5-min: 1.8rem;
+$font-h5-max: 2.4rem;
+
+$font-h6-min: 1.6rem;
+$font-h6-max: 1.8rem;

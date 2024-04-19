@@ -1,0 +1,20 @@
+// import dependencies
+//@import "../../styles/layout/layout-mixins/mixins";
+//@import "../../styles/layout/layout-variables/variables";
+
+// icon preview
+#fontPreviewContainer {
+   [data-max-columns="auto"] {
+      /* autoprefixer: ignore next */
+      // Note: auto-fit value is not supported by IE
+      grid-template-columns: repeat(auto-fit, minmax(auto, 150px));
+      grid-template-rows: auto;
+      grid-gap: 30px;
+
+      // IE11 compatibility - only necessary if supporting IE11
+      // --------------------------------------------------
+      //@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+      //   display: block;
+      //}
+   }
+}

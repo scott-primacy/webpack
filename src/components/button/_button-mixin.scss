@@ -1,0 +1,220 @@
+// import variables
+@import "../../styles/utilities/variables";
+
+// button style
+// --------------------------------------------------
+
+// scoped variables
+$btn-border: 1px solid $color-black;
+$btn-border-radius: 30px;
+$btn-padding-x: 60px;
+$btn-padding-y: 15px;
+
+@mixin button($btn) {
+    // if button reset get no styles
+    @if ($btn == "reset") {
+        @include transition(none);
+        background-color: transparent;
+        border: none;
+        border-radius: 0;
+        padding: 0;
+
+        &:after {
+            display: none;
+        }
+
+        // Reset Hover
+        &:hover,
+        &:focus {
+            background-color: transparent;
+        }
+    }
+
+    // else get default styles
+    @else {
+        @include font-size($font-min);
+        display: inline-flex;
+        color: $color-black;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        user-select: none;
+        background-color: $color-white;
+        border: $btn-border;
+        border-radius: $btn-border-radius;
+        padding: $btn-padding-y $btn-padding-x;
+        cursor: pointer;
+        font-weight: $font-weight-bold;
+        text-decoration: none;
+        transition: all 0.25s ease;
+
+        &:after {
+            //@include icon-font("button-arrow");
+            display: inline-block;
+            margin-left: 15px;
+        }
+
+        // default hover
+        &:hover {
+            color: $color-black;
+            background-color: darken($color-white, 10%);
+        }
+
+        // default disabled
+        &:disabled,
+        &.disabled {
+            @include transition(none);
+            opacity: 0.6;
+            box-shadow: none;
+            cursor: default;
+            background-color: $color-white;
+            color: $color-black;
+        }
+
+        // default active
+        &:active,
+        &.active {
+            background-color: darken($color-white, 15%);
+        }
+    }
+
+    // primary button
+    // -------------------------------------------
+    @if ($btn == "primary") {
+        background-color: $color-stratos;
+        border-color: $color-stratos;
+        color: $color-aquamarine;
+
+        &:after {
+            color: $color-aquamarine;
+        }
+
+        &[target="_blank"] {
+            position: relative;
+            padding-right: $btn-padding-x + 20px;
+            &:after {
+                color: inherit;
+                content: "\f504";
+                font-family: dashicons;
+                font-size: 2rem;
+                font-weight: 400;
+                position: absolute;
+                right: 18px;
+            }
+        }
+
+        // primary hover
+        &:hover,
+        &:focus {
+            color: $color-stratos;
+            border-color: $color-aquamarine;
+            background-color: $color-aquamarine;
+        }
+
+        // primary active
+        &:active,
+        &.active {
+            border-color: darken($color-stratos, 10%);
+            background-color: darken($color-stratos, 10%);
+        }
+
+        // primary disabled
+        &:disabled,
+        &.disabled {
+            opacity: 0.6;
+        }
+    }
+
+    // secondary button
+    // -------------------------------------------
+    @if ($btn == "secondary") {
+        @include font-size($font-min);
+        background-color: $color-aquamarine;
+        border-color: $color-aquamarine;
+        color: $color-stratos;
+        position: relative;
+
+        &:after {
+            color: $color-stratos;
+        }
+
+        // secondary hover
+        &:focus,
+        &:hover {
+            color: $color-aquamarine;
+            border-color: $color-aquamarine;
+            background-color: $color-stratos;
+        }
+
+        // secondary active
+        &:active,
+        &.active {
+            background-color: darken($color-aquamarine, 15%);
+            border-color: darken($color-aquamarine, 15%);
+        }
+
+        // secondary disabled
+        &:disabled,
+        &.disabled {
+            opacity: 0.6;
+        }
+    }
+
+    // taxonomy button
+    // -------------------------------------------
+    @if ($btn == "taxonomy") {
+        @include font-size(12px, 14px);
+        font-weight: $font-weight-regular;
+        background-color: $color-white;
+        border-color: $color-white;
+        color: $color-endeavour;
+        position: relative;
+
+        &:after {
+            display: none;
+        }
+
+        // secondary hover
+        &:hover,
+        &:focus {
+            color: $color-endeavour;
+            border-color: $color-white;
+            background-color: $color-white;
+            text-decoration: underline;
+        }
+    }
+
+    // text link
+    // -------------------------------------------
+    @if ($btn == "text") {
+        @include font-size(1.6rem, 1.8rem);
+        font-weight: $font-weight-semibold;
+        background-color: transparent;
+        border-color: transparent;
+        color: $color-endeavour;
+        position: relative;
+        text-decoration: none;
+        padding: 0;
+
+        @include media-breakpoint-down(sm) {
+            .tab-content & {
+                color: $color-white;
+            }
+        }
+
+        &:after {
+            @include icon-font("arrow-right");
+            margin-left: 10px;
+            transition: margin-left 0.3s ease;
+        }
+
+        &:hover,
+        &:focus {
+            text-decoration: none;
+            background: transparent;
+            &:after {
+                margin-left: 15px;
+            }
+        }
+    }
+}

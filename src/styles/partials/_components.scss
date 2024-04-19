@@ -1,0 +1,193 @@
+body {
+    color: #4a4a4a;
+}
+
+// Header Container
+.main-header {
+    position: relative;
+    padding: 25px 0;
+    background: $color-gallery;
+
+    &-container {
+        @include make-container;
+        @include make-container-max-widths;
+        display: flex;
+
+        .logo {
+            width: auto;
+            text-align: left;
+        }
+
+        a {
+            display: block;
+            width: 100%;
+            text-align: center;
+
+            &:focus {
+                outline: 2px dotted white;
+                outline-offset: 2px;
+            }
+        }
+    }
+}
+
+// Module
+.module {
+    margin: 0 0 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid $color-silver;
+
+    &:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+    }
+}
+
+// Main Navigation
+.main-navigation {
+    flex: 0 1 auto;
+    margin-left: auto;
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+            display: none;
+            width: 75px;
+            height: 25px;
+
+            @include media-breakpoint-up(md) {
+                display: inline-block;
+            }
+
+            &.mobile-trigger {
+                display: block;
+
+                @include media-breakpoint-up(md) {
+                    display: none;
+                }
+            }
+
+            // Dropdown Navigation Items
+            .nav-container {
+                background: $color-yellow;
+
+                .container {
+                    padding: 40px 15px;
+                    display: grid;
+                    grid-template-columns: repeat(5, 1fr);
+                    grid-template-rows: auto;
+                    grid-gap: 0 25px;
+                }
+
+                ul {
+                    display: block;
+                    width: 100%;
+
+                    li {
+                        width: 100%;
+                        display: block;
+                        margin: 0 0 10px;
+
+                        a {
+                            text-align: left;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Hero Section
+.hero-container {
+    width: 100%;
+    display: block;
+}
+
+// Body Content Section
+.body {
+    &-container {
+        @include make-container;
+        @include make-container-max-widths;
+    }
+
+    &-content {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+
+        @include media-breakpoint-up(md) {
+            grid-template-columns: 3fr 1fr;
+            grid-template-rows: auto;
+            grid-gap: 0 60px;
+        }
+    }
+}
+
+
+// Main Content
+.main-content {
+    order: 1;
+
+    @include media-breakpoint-up(md) {
+        order: 0;
+    }
+}
+
+// Sidebar
+.sidebar {
+    order: 0;
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+            display: block;
+            margin: 10px 0;
+
+            a {
+                display: block;
+                width: 100%;
+            }
+        }
+    }
+}
+
+// PrismJS Code Toolbar
+div.code-toolbar {
+    pre[class*="language-"] {
+        max-height: 500px;
+        overflow-y: auto;
+        white-space: pre-wrap;
+        font-size: 12px;
+        line-height: 0.8;
+    }
+
+    & > .toolbar {
+        top: 10px;
+        right: 25px;
+
+        .toolbar-item {
+            a,
+            button,
+            span {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: $color-black;
+                background: $color-yellow;
+                border: none;
+                box-shadow: none;
+                padding: 8px;
+                min-width: 65px;
+            }
+        }
+    }
+
+}

@@ -1,0 +1,52 @@
+// import utilities
+@import "../../styles/modules/variables";
+
+// nav tab styles
+// --------------------------------------------------
+.nav-tabs {
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+
+   // nav tab item
+   &-item {
+      margin: 0;
+      display: inline-block;
+
+      a {
+         position: relative;
+         text-decoration: none;
+
+         &.active {
+            font-weight: $font-weight-bold;
+            color: $brand-primary;
+         }
+      }
+   }
+}
+
+// tabs content styles
+// --------------------------------------------------
+.tab {
+   // tab content
+   &-content {
+      // hide tabbable panes to start, show them when `.active`
+       background-color: $color-alabaster;
+       padding: 60px 0;
+
+      > .tab-pane {
+         display: none;
+
+         &.active {
+            display: block;
+         }
+
+         // optional tab-content fade transition
+         &.fade {
+            &:not(.show) {
+               opacity: 0;
+            }
+         }
+      }
+   }
+}

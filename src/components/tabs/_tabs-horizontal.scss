@@ -1,0 +1,75 @@
+// horizontal tabs styles
+// --------------------------------------------------
+.tab {
+    // inherit from base tabs
+
+    &--horizontal {
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: auto;
+
+        //@include media-breakpoint-down(md) {
+        //   .tab-overflow {
+        //      display: flex;
+        //      overflow-x: auto;
+        //      margin: 30px -30px 0 -15px;
+        //      padding: 10px 0 0 15px;
+        //   }
+        //}
+
+        .nav-tabs {
+            display: flex;
+            border-bottom: 1px solid $color-shark;
+
+            //@include media-breakpoint-down(md) {
+            //   flex-grow: 1;
+            //   padding-right: 15px;
+            //   position: relative;
+            //
+            //   // adds fake spacing to end of nav-tabs
+            //   &:after {
+            //      content: "";
+            //      position: absolute;
+            //      width: 15px;
+            //      top: -1px;
+            //      bottom: -1px;
+            //      background-color: $color-white;
+            //      display: block;
+            //      right: 0;
+            //   }
+            //}
+
+            &-item {
+                display: inline-block;
+                margin: 0 20px;
+                white-space: nowrap;
+
+                &:first-child { margin-left: 0; }
+                &:last-child { margin-right: 0; }
+
+                a {
+                    color: $color-shark;
+                    position: relative;
+                    padding: 0 10px 15px;
+
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        height: 5px;
+                        background: transparent;
+                        bottom: 0;
+                        left: 0;
+                        width: 100%;
+                    }
+
+                    &.active {
+                        &:after {
+                            background: $brand-primary;
+                            z-index: 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

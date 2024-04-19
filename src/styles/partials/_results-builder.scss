@@ -1,0 +1,286 @@
+// PRIMACY
+
+// Colors
+$color-alabaster: #F9F9F9;
+$color-white: #FFF;
+$color-black: #000;
+$color-turbo: #FBE700;
+$color-thunder: #231F20;
+$brand-primary: $color-thunder;
+$brand-secondary: $color-turbo;
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700');
+
+// Font Family
+$font-family-base: 'Montserrat', sans-serif;
+
+// Font Size
+$font-size-lg: 15px;
+$font-size-base: 14px;
+
+// Font Weight
+$font-weight-regular: 400;
+$font-weight-semi-bold: 500;
+
+// Measurements
+$spacing: 40px;
+$border-radius: 4px;
+
+
+// Header
+.results-builder-header {
+    position: relative;
+    padding: ($spacing / 2) 0;
+    background-color: $brand-primary;
+    width: 100%;
+    z-index: 1;
+
+    // Logo
+    .logo {
+        width: 100%;
+
+        img {
+            max-width: 30px;
+            height: auto;
+        }
+    }
+
+    // Heading
+    .heading {
+        text-align: right;
+        align-items: flex-end;
+        align-self: center;
+        width: 100%;
+
+        &-page-title {
+            font-size: $font-size-lg;
+            font-weight: $font-weight-semi-bold;
+            letter-spacing: inherit;
+            color: $color-white;
+            margin-bottom: 0;
+        }
+    }
+}
+
+// Results Builder
+.results-builder-container {
+    font-family: $font-family-base;
+    font-size: $font-size-base;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    border-radius: $border-radius;
+
+    &:before {
+        content: "";
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 0;
+        background-color: darken($color-alabaster, 1%);
+    }
+
+    // Results Builder
+    .results-builder {
+        position: relative;
+        padding: $spacing 0;
+
+        &-grid {
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: auto;
+            grid-gap: 30px;
+            text-align: left;
+
+            @include media-breakpoint-up(lg) {
+                display: grid;
+            }
+        }
+
+        &-item {
+            border-radius: $border-radius;
+            margin: 0 0 30px;
+            overflow: hidden;
+            background-color: $color-white;
+            width: 100%;
+
+            @include media-breakpoint-up(lg) {
+                margin: 0;
+            }
+
+            &-title {
+                font-size: $font-size-lg;
+                color: $color-white;
+                font-weight: $font-weight-semi-bold;
+                background-color: $brand-primary;
+                padding: 15px ($spacing / 2);
+                border-radius: $border-radius $border-radius 0 0;
+            }
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+
+            ul {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+
+                li {
+                    &:hover {
+                        background-color: transparent;
+                    }
+
+                    a,
+                    span {
+                        position: relative;
+                        padding-left: 30px;
+
+                        &:hover {
+                            color: rgba($brand-primary, 1.0);
+
+                            &:before {
+                                content: "";
+                                position: absolute;
+                                top: 0;
+                                bottom: 0;
+                                left: 0;
+                                margin: auto;
+                                height: 100%;
+                                width: 3px;
+                                background-color: $brand-secondary;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        li {
+            //transition: all 0.2s ease-in-out;
+            position: relative;
+            display: block;
+            border-bottom: 1px solid rgba($brand-primary, 0.15);
+            margin: 0;
+            width: 100%;
+
+            // Hover styles.
+            &:hover {
+                background-color: rgba($brand-primary, 0.01);
+
+                &:last-child {
+                    border-radius: 0 0 $border-radius $border-radius;
+                }
+
+                > a,
+                > span {
+                    color: rgba($brand-primary, 0.8) !important;
+                }
+
+                a,
+                span {
+                    color: rgba($brand-primary, 0.4);
+                }
+
+                .status-default:after {
+                    background-color: transparent;
+                }
+            }
+
+            // Remove bottom border.
+            &:last-child {
+                border-bottom: none;
+            }
+
+            li {
+                a,
+                span {
+                    font-weight: normal;
+                }
+            }
+
+            a,
+            span {
+                //transition: all 0.2s ease-in-out;
+                position: relative;
+                display: block;
+                height: 100%;
+                padding: 12px 55px 12px ($spacing / 2);
+                color: rgba($color-black, 0.6);
+                font-weight: $font-weight-semi-bold;
+            }
+        }
+
+        // Copyright
+        &-copyright {
+            margin-top: ($spacing / 2);
+            text-align: right;
+            font-size: 12px;
+            color: rgba($color-black, 0.2);
+        }
+    }
+
+    // Status
+    .status {
+        position: relative;
+
+        // Default
+        &-default {
+            &:after {
+                position: absolute;
+                content: "";
+                top: 0;
+                right: ($spacing / 2);
+                bottom: 0;
+                margin: auto;
+                display: inline-block;
+                width: 12px;
+                height: 12px;
+                line-height: 12px;
+                border-radius: 50%;
+                background-color: $color-alabaster;
+                border: 1px solid darken($color-alabaster, 10%);
+            }
+        }
+
+        // Blocker
+        &-blocker {
+            &:after {
+                background-color: $color-danger !important;
+                border-color: $color-danger;
+            }
+        }
+
+        // In Progress
+        &-in-progress {
+            &:after {
+                animation: in-progress 1.6s linear infinite;
+                border: 1px solid $brand-primary;
+                border-top: 1px solid transparent;
+                transform: rotate(45deg);
+            }
+        }
+
+        // Completed
+        &-completed {
+            &:after {
+                border-color: $color-success;
+            }
+        }
+    }
+}
+
+
+// Animation
+@keyframes in-progress {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

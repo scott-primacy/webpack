@@ -1,0 +1,48 @@
+// button style
+// --------------------------------------------------
+.btn {
+   @include button(default);
+
+   // button variant -- primary
+   &--primary {
+      @include button(primary);
+   }
+
+   // button variant -- secondary
+   &--secondary {
+      @include button(secondary);
+   }
+
+   // button reset
+   &--reset {
+      @include button(reset);
+   }
+
+   &.arrow {
+      //@include arrow(right);
+   }
+
+   &.btn-link {
+      @include button(text);
+   }
+
+   // Button Group
+   &--group {
+      position: relative;
+      display: inline-flex;
+      vertical-align: middle;
+
+      > .btn {
+         &:not(:first-child) {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            margin-left: -1px;
+         }
+
+         &:not(:last-child) {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+         }
+      }
+   }
+}

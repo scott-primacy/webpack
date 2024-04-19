@@ -1,0 +1,224 @@
+// import utilities
+@import "../../styles/utilities/global-utilities";
+
+// vertical tab styles
+// --------------------------------------------------
+.module-tabbed-content {
+   @include media-breakpoint-down(md) {
+      position: relative;
+
+      &:after {
+         content: "";
+         display: block;
+         background-color: var(--color-blue-light);
+         position: absolute;
+         top: 0;
+         height: 100%;
+         width: 200%;
+         left: -50%;
+         z-index: -1;
+      }
+   }
+
+   &.rounded-top {
+      background-color: var(--color-blue-light);
+      margin-top: 200px;
+      padding-top: 10px;
+      padding-bottom: 20px;
+      position: relative;
+      &:before {
+         content: "";
+         background-color: var(--color-blue-light);
+         clip-path: ellipse(60% 50% at 50% 50%);
+         height: 400px;
+         width: 100%;
+         position: absolute;
+         top: -100px;
+         left: 0;
+         z-index: -1;
+      }
+      .module-title_link_block {
+         padding-top: 0;
+         text-align: center;
+
+         .eyebrow,
+         .eyebrow > *,
+         .subhead {
+            color: $color-white;
+         }
+         .eyebrow > a:after {
+            background-color: $color-aquamarine;
+         }
+         .subhead {
+            margin-bottom: 30px;
+         }
+      }
+   }
+
+   @include media-breakpoint-down(md) {
+      background: var(--color-blue-light);
+
+      &.rounded-top {
+         &:before {
+            height: 150px;
+            top: -50px;
+         }
+      }
+   }
+}
+
+.tab {
+   // inherit from base tabs
+
+   &--vertical {
+      margin-bottom: 70px;
+      display: grid;
+      grid-gap: 80px;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+      position: relative;
+      z-index: 4;
+
+      @include media-breakpoint-down(md) {
+         display: block;
+         margin-bottom: 0;
+         grid-template-columns: 1fr;
+      }
+
+      .nav {
+         @include media-breakpoint-down(md) {
+            display: none;
+         }
+
+         &-tabs {
+            height: 100%;
+         }
+
+         &-item {
+            display: block;
+         }
+
+         &-link {
+            background: transparent;
+            border: none;
+            font-weight: normal;
+            color: var(--color-white);
+            padding: 30px 20px 30px 0;
+            position: relative;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            font-size: 2.6rem;
+            line-height: 3.4rem;
+            text-align: left;
+            transition: $transition-base;
+            left: 30px;
+
+            &:hover,
+            &:focus {
+               color: $color-white;
+               left: 15px;
+            }
+
+            &.active {
+               left: 0;
+               background: transparent;
+               &:after {
+                  content: "";
+                  position: absolute;
+                  width: 120%;
+                  height: 3px;
+                  background: var(--color-pastel-green);
+                  left: 0;
+                  bottom: 0;
+               }
+            }
+         }
+      }
+
+      @include media-breakpoint-up(lg) {
+         .tab-content {
+            min-height: 600px;
+         }
+      }
+
+      // tab content
+      .tab-content {
+         @include media-breakpoint-down(md) {
+            background: transparent;
+            min-height: auto;
+            padding: 0;
+         }
+
+         .tab-pane {
+            .blue-bg & {
+               color: var(--color-stratos);
+            }
+            [data-max-columns="2"] {
+               align-items: center;
+               grid-gap: 30px;
+               grid-template-columns: auto 1fr;
+               margin-top: 30px;
+            }
+
+            @include media-breakpoint-down(md) {
+               border-bottom: 3px solid $color-sushi;
+               display: block;
+               opacity: 1 !important;
+            }
+
+            //p {
+            //   overflow: hidden;
+            //}
+
+            // hide accordion button on desktop
+            .collapse-trigger {
+               display: none;
+
+               @include media-breakpoint-down(md) {
+                  @include font-size(2rem);
+                  display: block;
+                  background: transparent;
+                  color: $color-white;
+                  padding: 25px 40px 25px 0;
+
+                  &:before {
+                     left: auto;
+                     right: 0;
+                  }
+               }
+            }
+
+            // toggle visibility of container
+            .collapse-target {
+               @include media-breakpoint-down(md) {
+                  &,
+                  p > a:not(.btn--primary) {
+                     color: $color-white;
+                  }
+                  padding-bottom: 25px;
+
+                  h2,
+                  h3,
+                  h4,
+                  h5 {
+                     color: $color-white;
+                  }
+                  img {
+                     margin-right: 15px;
+                     margin-bottom: 15px;
+                  }
+               }
+
+               &.collapse:not(.show) {
+                  display: block;
+
+                  @include media-breakpoint-down(md) {
+                     display: none;
+                  }
+               }
+            }
+         }
+      }
+   }
+}

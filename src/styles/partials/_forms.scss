@@ -1,0 +1,66 @@
+.form-control {
+    position: relative;
+    text-decoration: none;
+    text-align: left;
+    background-color: $color-white;
+    color: lighten($color-black, 20%);
+    //outline: none; //accessibility no-no!
+    vertical-align: middle;
+    height: 40px;
+    box-shadow: none;
+    border: 0;
+    border-radius: 0;
+    border-bottom: 2px solid $brand-primary;
+}
+
+input[type='radio'],
+input[type='checkbox'] {
+    margin-left: 5px;
+}
+
+input[type='button'] {
+    background: $link-color;
+    margin: 0;
+    padding: 5px 15px;
+    position: relative;
+    text-decoration: none !important;
+    text-align: center;
+    font-weight: normal;
+    outline: none;
+    vertical-align: middle;
+    border-radius: 2px;
+    display: inline-block;
+    font-size: 0.75rem;
+    color: $color-white;
+    white-space: nowrap;
+    text-transform: uppercase;
+}
+
+// Select Wrapper
+.select-wrapper {
+    display: flex;
+    width: 100%;
+    position: relative;
+
+    &:after {
+        content: "";
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='35' height='20' version='1'%3E%3Cpath fill='%23004990' fill-rule='evenodd' stroke='%23004990' stroke-width='2' d='M33 4L18 18h-1L2 4a1 1 0 1 1 2-2l14 14L31 2a1 1 0 0 1 2 2z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        background-size: 18px;
+        position: absolute;
+        right: 15px;
+        z-index: -1;
+        display: flex;
+        width: 24px;
+        height: 24px;
+        align-self: center;
+        pointer-events: auto;
+    }
+
+    .form-control {
+        appearance: none;
+        padding-right: 56px;
+        background: transparent;
+    }
+}

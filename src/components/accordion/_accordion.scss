@@ -1,0 +1,45 @@
+@import "~badger-accordion/dist/badger-accordion";
+@import "../../styles/modules/colors";
+
+// Accordion Module
+.accordion {
+   display: block;
+   margin: 0;
+   padding: 0;
+
+   &-header {
+      width: 100%;
+      padding: 10px 20px;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+      background-color: $color-gallery;
+   }
+
+   &-panel {
+      border: 1px solid $color-gallery;
+      border-top: none;
+      max-height: 75vh;
+      overflow: hidden;
+
+      // Initialized
+      .accordion-initialized & {
+         transition: max-height ease-in-out 0.2s;
+      }
+
+      // Hidden
+      &.is-hidden {
+         max-height: 0 !important;
+      }
+
+      &-inner {
+         padding: 20px;
+      }
+   }
+
+   p {
+      &:last-child {
+         margin-bottom: 0;
+      }
+   }
+}

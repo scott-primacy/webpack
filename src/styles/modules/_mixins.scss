@@ -1,0 +1,59 @@
+// Arrow {
+@mixin arrow($position, $size: 8px) {
+    @extend .btn-arrow;
+
+    &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: -20px;
+        bottom: 0;
+        transition: all 0.3s ease-in-out;
+        border-style: solid;
+        border-width: 0 2px 2px 0;
+        display: inline-block;
+        margin: auto 0;
+        padding: 0;
+        width: $size;
+        height: $size;
+
+        @if $position == up {
+            transform: rotate(-135deg) translate3d(0, 0, 0);
+        }
+
+        @if $position == right {
+            left: auto;
+            transform: rotate(-45deg) translate3d(0, 0, 0);
+        }
+
+        @if $position == down {
+            transform: rotate(45deg) translate3d(0, 0, 0);
+        }
+
+        @if $position == left {
+            right: 5px;
+            transform: rotate(135deg) translate3d(0, 0, 0);
+        }
+    }
+
+    &:hover,
+    &:focus {
+        &:after {
+            @if $position == up {
+                transform: rotate(-135deg) translate3d(0, 0, 0);
+            }
+
+            @if $position == right {
+                transform: rotate(-45deg) translate3d(2px, 2px, 0);
+            }
+
+            @if $position == down {
+                transform: rotate(45deg) translate3d(0, 0, 0);
+            }
+
+            @if $position == left {
+                transform: rotate(135deg) translate3d(2px, 2px, 0);
+            }
+        }
+    }
+}

@@ -1,0 +1,93 @@
+@if not variable-exists('icon-font') {
+    $icon-font: () !global;
+}
+
+$icon-font: map-merge($icon-font, (
+   'accessibility': ('icons' 'f101'),
+   'add': ('icons' 'f102'),
+   'alert-error-outline': ('icons' 'f103'),
+   'alert-error': ('icons' 'f104'),
+   'alert-info-outline': ('icons' 'f105'),
+   'alert-info': ('icons' 'f106'),
+   'alert-warning': ('icons' 'f107'),
+   'arrow-down': ('icons' 'f108'),
+   'arrow-left': ('icons' 'f109'),
+   'arrow-right': ('icons' 'f10a'),
+   'arrow-up': ('icons' 'f10b'),
+   'callout-arrow-right': ('icons' 'f10c'),
+   'caret-down': ('icons' 'f10d'),
+   'caret-left': ('icons' 'f10e'),
+   'caret-right': ('icons' 'f10f'),
+   'caret-up': ('icons' 'f110'),
+   'checkbox-checked': ('icons' 'f111'),
+   'checkbox-unchecked': ('icons' 'f112'),
+   'checkmark': ('icons' 'f113'),
+   'chevron-down': ('icons' 'f114'),
+   'chevron-left': ('icons' 'f115'),
+   'chevron-right': ('icons' 'f116'),
+   'chevron-up': ('icons' 'f117'),
+   'circle-add': ('icons' 'f118'),
+   'circle-cancel': ('icons' 'f119'),
+   'circle-checkmark': ('icons' 'f11a'),
+   'circle-remove': ('icons' 'f11b'),
+   'close': ('icons' 'f11c'),
+   'email': ('icons' 'f11d'),
+   'favorite-outline': ('icons' 'f11e'),
+   'favorite': ('icons' 'f11f'),
+   'help-outline': ('icons' 'f120'),
+   'help': ('icons' 'f121'),
+   'location': ('icons' 'f122'),
+   'menu': ('icons' 'f123'),
+   'phone': ('icons' 'f124'),
+   'quote-left': ('icons' 'f125'),
+   'quote-right': ('icons' 'f126'),
+   'quote_green': ('icons' 'f127'),
+   'radio-checked': ('icons' 'f128'),
+   'radio-unchecked': ('icons' 'f129'),
+   'remove': ('icons' 'f12a'),
+   'search': ('icons' 'f12b'),
+   'share': ('icons' 'f12c'),
+   'shuffle': ('icons' 'f12d'),
+   'social-facebook-square': ('icons' 'f12e'),
+   'social-facebook': ('icons' 'f12f'),
+   'social-instagram': ('icons' 'f130'),
+   'social-linkedin-square': ('icons' 'f131'),
+   'social-linkedin': ('icons' 'f132'),
+   'social-primacy': ('icons' 'f133'),
+   'social-twitter-square': ('icons' 'f134'),
+   'social-twitter': ('icons' 'f135'),
+   'social-vimeo-square': ('icons' 'f136'),
+   'social-vimeo': ('icons' 'f137'),
+   'social-youtube-play': ('icons' 'f138'),
+   'social-youtube-square': ('icons' 'f139'),
+   'social-youtube': ('icons' 'f13a'),
+   'star-half': ('icons' 'f13b'),
+   'star-outline': ('icons' 'f13c'),
+   'star': ('icons' 'f13d'),
+   'time': ('icons' 'f13e'),
+   'video-pause': ('icons' 'f13f'),
+   'video-play': ('icons' 'f140'),
+   'visibility-off': ('icons' 'f141'),
+   'visibility-on': ('icons' 'f142'),
+));
+
+@mixin icon-font($name: $name, $size: null) {
+    $icon: map-get($icon-font, $name);
+    content: #{'"\\' + nth($icon, 2) + '"'};
+    font-family: nth($icon, 1) !important;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    @if ($size == null) {
+        font-size: $size;
+    } @else {
+        font-size: $font-size-icon;
+    }
+}
