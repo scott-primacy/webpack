@@ -1,6 +1,3 @@
-// Import Sass
-import "../styles/app";
-
 // Import Component dependencies
 import initAccordionComponent from "../components/accordion/accordion";
 import initSupportsComponent from "../components/vendor/supports-polyfill";
@@ -8,7 +5,6 @@ import initTabComponent from "../components/tabs/tabs";
 import "bootstrap";
 import iconFont from "../components/icon-font/icon-font";
 import carousel from "../components/carousel/carousel";
-
 
 // Import Primacy dependencies
 import initUserInterfaceComponent from "./userInterface";
