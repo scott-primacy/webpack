@@ -10,14 +10,15 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900" rel="stylesheet">
 
-   <script defer src="Scripts/app.js"></script>
-   <link href="Styles/app.css" rel="stylesheet">
-
+    <!-- load source files: images, SCSS, JS, etc, using webpack aliases -->
+    <link href="@images/favicon-1.png" rel="icon" />
+    <link href="@styles/app.scss" rel="stylesheet">
+    <script defer src="@scripts/app.js"></script>
 </head>
 
 <body class="<%= bodyClass %>">
 
-	<!-- Skip Nav -->
-	<div id="skip-nav">
-		<a href="#main">Skip Navigation</a>
-	</div>
+  <!-- Skip Nav -->
+  <div id="skip-nav">
+    <a href="#main">Skip Navigation</a>
+  </div>

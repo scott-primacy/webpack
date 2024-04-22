@@ -297,7 +297,8 @@ export default function () {
    }
 
    calculateTallestHeightOfHeadingsInColumns();
-   window.onresize = debounce(calculateTallestHeightOfHeadingsInColumns, 300);
+   // TODO: fix debounce__ "WEBPACK_IMPORTED_MODULE_4" __.debounce is not a function
+   //window.onresize = debounce(calculateTallestHeightOfHeadingsInColumns, 300);
 
    function calculateTallestHeightOfVerticalTabPanes() {
       if (window.innerWidth > 992) {
@@ -326,5 +327,6 @@ export default function () {
    }
 
    calculateTallestHeightOfVerticalTabPanes();
-   window.onresize = debounce(calculateTallestHeightOfVerticalTabPanes, 300);
+   // TODO: fix debounce__ "WEBPACK_IMPORTED_MODULE_4" __.debounce is not a function
+   //window.onresize = debounce(calculateTallestHeightOfVerticalTabPanes, 300);
 }

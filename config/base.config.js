@@ -4,6 +4,7 @@ const ESLintPlugin = require("eslint-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const FileManagerPlugin = require("filemanager-webpack-plugin");
 const HtmlBundlerPlugin = require("html-bundler-webpack-plugin");
+const { FaviconsBundlerPlugin } = require('html-bundler-webpack-plugin/plugins');
 
 class CurrentTimePlugin {
    constructor() {
@@ -23,20 +24,25 @@ class CurrentTimePlugin {
 }
 
 module.exports = {
-   // NOTE: add the source JS file directly in the template using <script src="scripts/app.js"> tag, NOT here
-   // entry: {
-   //   app: [path.join(__dirname, '../src/js/app.js')],
-   // },
+   mode: 'production',
+   devtool: 'source-map',
    devServer: {
       static: {
          directory: path.resolve(__dirname, "../dist"),
          serveIndex: true,
          watch: true
-      }
+      },
+      // allow browser live reload after changes
+      watchFiles: {
+         paths: ['src/**/*.*'],
+         options: {
+           usePolling: true,
+         },
+      },
    },
    output: {
-      path: path.resolve(__dirname, "../dist")
-      //filename: 'js/[name].js', // <= MOVE into `js.filename` bundler plugin option
+      path: path.resolve(__dirname, "../dist"),
+      clean: true,
    },
    optimization: {
       minimize: false,
@@ -48,17 +54,17 @@ module.exports = {
       ]
    },
    resolve: {
-      //extensions: ['.js', '.css', '.scss'], // DON'T mix JS and SCSS extensions
-      extensions: [".js"],
+      extensions: ['.js', '.css', '.scss'],
       modules: ["node_modules"],
       alias: {
+         // NOTE: the best practice is using the `@` prefix for aliases
+         '@fonts': path.resolve(__dirname, "../src/fonts"),
+         '@images': path.join(__dirname, "../src/images"),
+         '@styles': path.resolve(__dirname, "../src/styles"),
+         '@scripts': path.resolve(__dirname, "../src/js"),
          request$: "xhr",
-         fonts: path.resolve(__dirname, "../src/fonts"),
          components: path.resolve(__dirname, "../src/components"),
          modules: path.resolve(__dirname, "../src/modules"),
-         Styles: path.resolve(__dirname, "../src/styles"),
-         Scripts: path.resolve(__dirname, "../src/js"), // <= use alias to define JS in the template
-         images: path.join(__dirname, "../wp/wp-content/themes/2019-redesign/assets/images") // <= use alias to define source image files
       }
    },
    module: {
@@ -89,49 +95,34 @@ module.exports = {
          },
          {
             // style loaders
-            test: /\.(css|sass|scss)$/,
+            test: /\.(s?css|sass)$/,
             use: [
-               // MiniCssExtractPlugin.loader, // <= DELETE it
                {
                   loader: "css-loader",
-                  options: {
-                     sourceMap: true,
-                     importLoaders: 2,
-                     esModule: false
-                  }
                },
                {
                   loader: "postcss-loader",
-                  options: {
-                     sourceMap: true
-                  }
-               },
-               {
-                  loader: "resolve-url-loader"
                },
                {
                   loader: "sass-loader",
-                  options: {
-                     sourceMap: true
-                  }
                }
             ]
          },
          {
             // Loads fonts
             test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
-            loader: "url-loader",
-            options: {
-               limit: true,
-               esModule: false
+            type: "asset/resource",
+            generator: {
+               filename: "assets/fonts/[name][ext]"
             }
          },
          {
             // Load images
             test: /\.(png|svg|jpg|jpeg|gif)$/i,
             type: "asset/resource",
+            include: /[\//]images[\//]/, // process only SVG images
             generator: {
-               filename: "assets/[name][ext]"
+               filename: "assets/images/[name][ext]"
             }
          }
       ]
@@ -140,65 +131,56 @@ module.exports = {
       children: true
    },
    plugins: [
-
-      new ESLintPlugin(),
+      //new ESLintPlugin(), // error: No ESLint configuration found
 
       new CurrentTimePlugin(),
 
       new HtmlBundlerPlugin({
          entry: {
-            article: "./src/views/article.html"
+            article: "src/views/article.html"
          },
          js: {
-            filename: "js/[name].js"
+            filename: "assets/js/[name].[contenthash:8].js"
          },
          css: {
-            filename: "styles/[name].css",
-            chunkFilename: "styles/[name].chunk.css"
-         }
+            filename: "assets/css/[name].[contenthash:8].css",
+            chunkFilename: "assets/css/[name].[contenthash:8].chunk.css"
+         },
       }),
 
-      // NOTE: you can define source image files directly in template using the webpack alias to the image directory,
-      // then you don't need to copy source images into dist
+      // add the build-in favicons plugin to generate favicons for various platforms
+      // see https://github.com/webdiscus/html-bundler-webpack-plugin?tab=readme-ov-file#favicons-bundler-plugin
+      // new FaviconsBundlerPlugin({
+      //    enabled: 'auto', // true, false, auto - generate favicons in production mode only
+      //    // favicons configuration options, see https://github.com/itgalaxy/favicons#usage
+      //    faviconOptions: {
+      //       path: 'assets/images/favicons', // favicons output path relative to webpack output.path
+      //       icons: {
+      //          android: true, // Create Android homescreen icon.
+      //          appleIcon: true, // Create Apple touch icons.
+      //          appleStartup: false, // Create Apple startup images.
+      //          favicons: true, // Create regular favicons.
+      //          windows: false, // Create Windows 8 tile icons.
+      //          yandex: false, // Create Yandex browser icon.
+      //       },
+      //    },
+      // }),
+
       new FileManagerPlugin({
          events: {
             onEnd: [
-               {delete: ["./dist/images"]},
                {
                   delete: [path.join(__dirname, "../wp/wp-content/themes/2019-redesign/assets/*")]
                },
                {
                   copy: [
                      {
-                        source: path.join(__dirname, "../src/images"),
-                        destination: path.join(__dirname, "../dist/images")
+                        // copy all generated assets
+                        source: path.join(__dirname, "../dist/assets"),
+                        destination: path.join(__dirname, "../wp/wp-content/themes/2019-redesign/assets")
                      }
                   ]
                },
-               {
-                  copy: [
-                     {
-                        source: path.join(__dirname, "../dist/images"),
-                        destination: path.join(__dirname, "../wp/wp-content/themes/2019-redesign/assets/images")
-                     }
-                  ]
-               },
-               {
-                  copy: [
-                     {
-                        source: path.join(__dirname, "../dist/js"),
-                        destination: path.join(__dirname, "../wp/wp-content/themes/2019-redesign/assets/js")
-                     }
-                  ]
-               },
-               {
-                  copy: [
-                     {
-                        source: path.join(__dirname, "../dist/css"),
-                        destination: path.join(__dirname, "../wp/wp-content/themes/2019-redesign/assets/css")
-                     }
-                  ]
-               }
             ]
          }
       }),

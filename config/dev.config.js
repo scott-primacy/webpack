@@ -3,8 +3,8 @@ const baseConfig = require("./base.config.js");
 const webpack = require("webpack");
 
 const mergedConfig = merge(baseConfig, {
-    devtool: "inline-source-map",
     mode: "development",
+    devtool: "inline-source-map",
     plugins: [
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('development')
